@@ -41,9 +41,19 @@ func Test_isPrime(t *testing.T) {
 
 
 	PS E:\go_testing_course\01_Prime_Application> go test -cover
-PASS
-coverage: 72.7% of statements
-ok      01_Prime_Application    0.313s
+	PASS
+	coverage: 72.7% of statements
+	ok      01_Prime_Application    0.313s
+
+
+*/
+
+/*
+
+	At A Galance Check To See Which Of My Code Lines Are Covered By The Test And Whcih Not By Using Below
+	Command .
+
+	go test -coverprofile=coverage.out
 
 
 */
