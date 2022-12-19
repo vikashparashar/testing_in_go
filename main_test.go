@@ -6,76 +6,43 @@ import (
 
 func Test_isPrime(t *testing.T) {
 
-	// check for zero
+	// this method is called table test
 
-	result, msg := isPrime(0)
-
-	if result {
-		t.Errorf("with %d as test parameter , got true , but excepted false", 0)
+	primeTests := []struct {
+		name       string
+		testNumber int
+		expected   bool
+		msg        string
+	}{
+		{"prime", 7, true, "7 is a prime number !"},
+		{"not prime", 0, false, "0 is not a prime number , by defination !"},
+		{"not prime", 1, false, "1 is not a prime number , by defination !"},
+		{"not prime", -7, false, "negative numbers are not prime , by defination !"},
 	}
 
-	if msg != "0 is not a prime number , by defination !" {
-		t.Error("wrong message returned:", msg)
+	for _, e := range primeTests {
+		result, msg := isPrime(e.testNumber)
+		if e.expected && !result {
+			t.Errorf("%s expected true but got false", e.name)
+		}
+		if !e.expected && result {
+			t.Errorf("%s expected false but got true", e.name)
+		}
+		if e.msg != msg {
+			t.Errorf("%s : expected %s but got %s", e.name, e.msg, msg)
+		}
 	}
-
-	// check for one
-	result, msg = isPrime(1)
-
-	if result {
-		t.Errorf("with %d as test parameter , got true , but excepted false", 1)
-	}
-
-	if msg != "1 is not a prime number , by defination !" {
-		t.Error("wrong message returned:", msg)
-	}
-
-	// check for positive number
-	result, msg = isPrime(7)
-
-	if result != true {
-		t.Errorf("with %d as test parameter , got false , but excepted true", 7)
-	}
-
-	if msg != "7 is a prime number !" {
-		t.Error("wrong message returned:", msg)
-	}
-
-	// check for negative number
-	result, msg = isPrime(-32)
-
-	if result {
-		t.Errorf("with %d as test parameter , got true , but excepted false", -32)
-	}
-
-	if msg != "negative numbers are not prime , by defination !" {
-		t.Error("wrong message returned:", msg)
-	}
-
 }
 
 /*
-	after taking all 4 possible outcomes
-	Archieved PASS
+
+	by this table test we again got 63 % coverage for our code
+
+
+	PS E:\go_testing_course\01_Prime_Application> go test -cover
+	PASS
 	coverage: 63.6% of statements
-	ok      01_Prime_Application    0.312s
+	ok      01_Prime_Application    0.324s
 
-*/
-
-/*
-
-	1.1 Test File Should Be With Main Package File
-
-	1.2 Test File Name Shoud Be xxx_test.go
-
-	1.3 Test Function Name Sould Be As  func TestXxx(t *testing.T){}
-
-	1.4 To run test file use command
-	go test
-	go test -v
-
-
-
-	1.5 To check the code coverge by test can use this command
-	go test -cover
 
 */
