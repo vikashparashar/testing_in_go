@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"io"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -68,4 +70,40 @@ git commit -m "writing test for intro function"
 
 func Test_intro(t *testing.T) {
 
+	// save a copy of os.stdout
+	oldOut := os.Stdout
+
+	// create a read and write pipe
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+	intro()
+	// close the writer
+
+	_ = w.Close()
+
+	// reset os.Stdout what is was before
+
+	os.Stdout = oldOut
+
+	// read the ooutput of our promp function from our read pipe
+	out, _ := io.ReadAll(r)
+
+	if !strings.Contains(string(out), "Enter a whole number") {
+		t.Errorf("intro text not correct ; got %s", string(out))
+	}
+
+}
+
+func Test_checkNumbers(t *testing.T) {
+	// res, _ := checkNumbers(bufio.NewScanner(os.Stdin))
+	// if !strings.EqualFold(res, "7 is a prime number!") {
+	// 	t.Errorf(("wrong return value"))
+	// }
+
+	input := strings.NewReader("7")
+	reader := bufio.NewScanner(input)
+	res, _ := checkNumbers(reader)
+	if !strings.EqualFold(res, "7 is a prime number !") {
+		t.Errorf("incorrect value returned; got %s", res)
+	}
 }
