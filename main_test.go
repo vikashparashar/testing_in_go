@@ -110,6 +110,10 @@ func Test_checkNumbers(t *testing.T) {
 		{name: "negative", input: "-56", expected: "negative numbers are not prime , by defination !"},
 		{name: "prime", input: "7", expected: "7 is a prime number !"},
 		{name: "not prime", input: "8", expected: "8 is not a prime number because it is divisible by 2 ."},
+		{name: "typed", input: "seven", expected: "Please enter a whole number!"},
+		{name: "decimal", input: "78.3", expected: "Please enter a whole number!"},
+		{name: "quit", input: "q", expected: ""},
+		{name: "quit", input: "Q", expected: ""},
 	}
 
 	for _, e := range tests {
