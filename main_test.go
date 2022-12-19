@@ -1,6 +1,8 @@
 package main
 
 import (
+	"io"
+	"os"
 	"testing"
 )
 
@@ -35,32 +37,27 @@ func Test_isPrime(t *testing.T) {
 	}
 }
 
-/*
+func Test_prompt(t *testing.T) {
 
-	by this table test we again got 72.7 % coverage for our code
+	// save a copy of os.stdout
+	oldOut := os.Stdout
 
+	// create a read and write pipe
+	r, w, _ := os.Pipe()
+	os.Stdout = w
+	prompt()
+	// close the writer
 
-	PS E:\go_testing_course\01_Prime_Application> go test -cover
-	PASS
-	coverage: 72.7% of statements
-	ok      01_Prime_Application    0.313s
+	_ = w.Close()
 
+	// reset os.Stdout what is was before
 
-*/
+	os.Stdout = oldOut
 
-/*
+	// read the ooutput of our promp function from our read pipe
+	out, _ := io.ReadAll(r)
+	if string(out) != "-> " {
+		t.Errorf("incorrect promt : expted -> but got %s", string(out))
+	}
 
-	At A Galance Check To See Which Of My Code Lines Are Covered By The Test And Whcih Not By Using Below
-	Command .
-
-	go test -coverprofile=coverage.out
-
-
-*/
-
-/*
-	To Check The Coverd Code in Browser Enter This Command
-
-	go tool cover -html=coverage.out
-
-*/
+}
