@@ -37,13 +37,13 @@ func Test_isPrime(t *testing.T) {
 
 /*
 
-	by this table test we again got 63 % coverage for our code
+	by this table test we again got 72.7 % coverage for our code
 
 
 	PS E:\go_testing_course\01_Prime_Application> go test -cover
-	PASS
-	coverage: 63.6% of statements
-	ok      01_Prime_Application    0.324s
+PASS
+coverage: 72.7% of statements
+ok      01_Prime_Application    0.313s
 
 
 */
