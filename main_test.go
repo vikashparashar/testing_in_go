@@ -15,6 +15,7 @@ func Test_isPrime(t *testing.T) {
 		msg        string
 	}{
 		{"prime", 7, true, "7 is a prime number !"},
+		{"not prime", 8, false, "8 is not a prime number because it is divisible by 2 ."},
 		{"not prime", 0, false, "0 is not a prime number , by defination !"},
 		{"not prime", 1, false, "1 is not a prime number , by defination !"},
 		{"not prime", -7, false, "negative numbers are not prime , by defination !"},
