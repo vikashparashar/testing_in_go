@@ -57,3 +57,10 @@ func Test_isPrime(t *testing.T) {
 
 
 */
+
+/*
+	To Check The Coverd Code in Browser Enter This Command
+
+	go tool cover -html=coverage.out
+
+*/
