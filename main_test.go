@@ -61,3 +61,11 @@ func Test_prompt(t *testing.T) {
 	}
 
 }
+
+/*
+git commit -m "writing test for intro function"
+*/
+
+func Test_intro(t *testing.T) {
+
+}
